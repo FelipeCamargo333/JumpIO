@@ -91,6 +91,8 @@ async function main() {
     //saveGridToServer(grid.getRows())
 
     //Update player
+    spawner = gameObjects.find(obj => obj.type === "Spawner")
+    player.position = structuredClone(spawner.position)
     player.updateCollisions(collisionBlocks)
 
     //Initial loop

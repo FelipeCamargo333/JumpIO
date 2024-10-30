@@ -12,11 +12,11 @@ class Grid {
     }
 
     fillBorder() {
-        this.rows[0].fill(1)
-        this.rows[this.height - 1].fill(1)
+        this.rows[0].fill(6)
+        this.rows[this.height - 1].fill(6)
         for (let i = 1; i < this.height - 1; i += 1) {
-            this.rows[i][0] = 1
-            this.rows[i][this.width - 1] = 1
+            this.rows[i][0] = 6
+            this.rows[i][this.width - 1] = 6
         }
     }
 
@@ -24,7 +24,7 @@ class Grid {
         let currentCollisionBlocks = []
         this.rows.forEach((row, y) => {
             row.forEach((symbol, x) => {
-                if (symbol > 0) {
+                if (symbol > 5) {
                     currentCollisionBlocks.push(
                         new CollisionBlock({
                             position : {
@@ -43,15 +43,31 @@ class Grid {
         let currentObjects = []
         this.rows.forEach((row, y) => {
             row.forEach((symbol, x) => {
-                if (symbol == 2) {
-                    currentObjects.push(
-                        new Block({
-                            position : {
-                                x: x * 64,
-                                y: y * 64,
-                            },
-                        })
-                    )
+                switch (symbol) {
+                    
+                    //Spawner
+                    case 1:
+                        currentObjects.push(
+                            new Spawner({
+                                position : {
+                                    x: x * 64,
+                                    y: y * 64,
+                                },
+                            })
+                        )
+                        break
+
+                    //Block
+                    case 7:
+                        currentObjects.push(
+                            new Block({
+                                position : {
+                                    x: x * 64,
+                                    y: y * 64,
+                                },
+                            })
+                        )
+                        break
                 }
             })
         })
@@ -85,3 +101,17 @@ class Grid {
 
     
 }
+
+//Legend
+// * No HitBox * 
+// 0 -> nothing
+// 1 -> player spawner
+// 2 ->
+// 3 -> 
+// 4 ->
+// 5 ->
+// * Hit Box *
+// 6 -> hitbox (no sprite)
+// 7 -> block
+// 8 ->
+// 9 ->

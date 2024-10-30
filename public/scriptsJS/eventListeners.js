@@ -23,6 +23,7 @@ window.addEventListener("keydown", (event) => {
 
         case "e":
             keys.e.pressed = true
+            break
     }
 }) 
 
@@ -51,6 +52,7 @@ window.addEventListener("keyup", (event) => {
 
         case "e":
             keys.e.pressed = false
+            break
 
     }
 }) 
