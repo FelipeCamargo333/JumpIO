@@ -94,6 +94,7 @@ class Player extends Sprite {
                     //Check if collision is harmful
                     if (collisionBlock.harmful) {
                         this.died = true
+                        return
                     }
                     
                     //Right collision
@@ -123,8 +124,8 @@ class Player extends Sprite {
                     
                     //Check if collision is harmful
                     if (collisionBlock.harmful) {
-                        console.log("DEAD")
                         this.died = true
+                        return
                     }
                     
                     //Up collision

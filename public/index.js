@@ -149,6 +149,7 @@ function gameLoop() {
     //Reset player if killed
     if (player.died) {
         player.position = structuredClone(spawner.position)
+        player.position.y = player.position.y -1
         player.died = false
     }
 
