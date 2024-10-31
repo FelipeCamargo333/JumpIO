@@ -1,9 +1,10 @@
 class CollisionBlock {
 
-    constructor ({position}) {
+    constructor ({position, width, height, harmful}) {
         this.position = position
-        this.width = 64
-        this.height = 64
+        this.width = width
+        this.height = height
+        this.harmful = harmful
     }
 
     //debug

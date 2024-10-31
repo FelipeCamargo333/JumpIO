@@ -77,6 +77,7 @@ let wasEPressed = false;
 
 //Grid object & collison
 const grid = new Grid({width, height})
+let spawner
 let collisionBlocks
 let gameObjects
 
@@ -111,7 +112,7 @@ function gameLoop() {
         gameObject.draw()
     })
 
-    //Collision
+    //Collision (debug)
     // collisionBlocks.forEach((collisionBlock) => {
     //     collisionBlock.draw()
     // })
@@ -145,6 +146,11 @@ function gameLoop() {
     player.draw()
     player.update()
 
+    //Reset player if killed
+    if (player.died) {
+        player.position = structuredClone(spawner.position)
+        player.died = false
+    }
 
     //Change loop
     if (keys.e.pressed && !wasEPressed) {

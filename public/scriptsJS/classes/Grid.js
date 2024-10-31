@@ -24,15 +24,38 @@ class Grid {
         let currentCollisionBlocks = []
         this.rows.forEach((row, y) => {
             row.forEach((symbol, x) => {
-                if (symbol > 5) {
-                    currentCollisionBlocks.push(
-                        new CollisionBlock({
-                            position : {
-                                x: x * 64,
-                                y: y * 64,
-                            },
-                        })
-                    )
+                switch (symbol) {
+                    
+                    //Border & Block
+                    case 6:
+                    case 7:
+                        currentCollisionBlocks.push(
+                            new CollisionBlock({
+                                position : {
+                                    x: x * 64,
+                                    y: y * 64,
+                                },
+                                width: 64,
+                                height: 64,
+                                harmful: false,
+                            })
+                        )
+                        break
+                    
+                    //Spikes (Floor)
+                    case 8:
+                        currentCollisionBlocks.push(
+                            new CollisionBlock({
+                                position : {
+                                    x: x * 64 + 6,
+                                    y: y * 64 + 34,
+                                },
+                                width: 52,
+                                height: 30,
+                                harmful: true,
+                            })
+                        )
+                        break
                 }
             })
         })
@@ -65,6 +88,19 @@ class Grid {
                                     x: x * 64,
                                     y: y * 64,
                                 },
+                            })
+                        )
+                        break
+                    
+                    //Spikes (Floor)
+                    case 8:
+                        currentObjects.push(
+                            new Spikes({
+                                position : {
+                                    x: x * 64,
+                                    y: y * 64,
+                                },
+                                imageSrc: "./images/spikes.png",
                             })
                         )
                         break
@@ -113,5 +149,5 @@ class Grid {
 // * Hit Box *
 // 6 -> hitbox (no sprite)
 // 7 -> block
-// 8 ->
+// 8 -> spikes (Floor)
 // 9 ->

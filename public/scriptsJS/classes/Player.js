@@ -24,7 +24,9 @@ class Player extends Sprite {
 
         this.collisionBlocks = collisionBlocks
 
+        //States
         this.lastDirection = "right"
+        this.died = false
     }
 
     switchSprite(name) {
@@ -88,6 +90,12 @@ class Player extends Sprite {
                 this.hitbox.position.x + this.hitbox.width >= collisionBlock.position.x &&
                 this.hitbox.position.y + this.hitbox.height >= collisionBlock.position.y &&
                 this.hitbox.position.y <= collisionBlock.position.y + collisionBlock.height) {
+                    
+                    //Check if collision is harmful
+                    if (collisionBlock.harmful) {
+                        this.died = true
+                    }
+                    
                     //Right collision
                     if (this.velocity.x < 0) {
                         const offset = this.hitbox.position.x - this.position.x
@@ -112,6 +120,13 @@ class Player extends Sprite {
                 this.hitbox.position.x + this.hitbox.width >= collisionBlock.position.x &&
                 this.hitbox.position.y + this.hitbox.height >= collisionBlock.position.y &&
                 this.hitbox.position.y <= collisionBlock.position.y + collisionBlock.height) {
+                    
+                    //Check if collision is harmful
+                    if (collisionBlock.harmful) {
+                        console.log("DEAD")
+                        this.died = true
+                    }
+                    
                     //Up collision
                     if (this.velocity.y < 0) {
                         this.velocity.y = 0
