@@ -56,6 +56,21 @@ class Grid {
                             })
                         )
                         break
+
+                    //Exit
+                    // case 9:
+                    //     currentCollisionBlocks.push(
+                    //         new CollisionBlock({
+                    //             position : {
+                    //                 x: x * 64,
+                    //                 y: y * 64,
+                    //             },
+                    //             width: 64,
+                    //             height: 64,
+                    //             harmful: false,
+                    //         })
+                    //     )
+                    //     break
                 }
             })
         })
@@ -101,6 +116,19 @@ class Grid {
                                     y: y * 64,
                                 },
                                 imageSrc: "./images/spikes.png",
+                            })
+                        )
+                        break
+                    
+                    //Exit
+                    case 9:
+                        currentObjects.push(
+                            new Exit({
+                                position : {
+                                    x: x * 64,
+                                    y: y * 64,
+                                },
+                                imageSrc: "./images/exit.png",
                             })
                         )
                         break
@@ -150,4 +178,4 @@ class Grid {
 // 6 -> hitbox (no sprite)
 // 7 -> block
 // 8 -> spikes (Floor)
-// 9 ->
+// 9 -> exit
